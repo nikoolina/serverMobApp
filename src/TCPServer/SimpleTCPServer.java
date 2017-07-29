@@ -147,6 +147,7 @@ class ThreadedEchoHandler implements Runnable {
                     } else if (line.length() >= 9) {
                         String brojTelefonaPrimatelja = line.trim();
                         //tu ide medota za provjeru postojeceg tel broja
+              
                         String brojJeValjan = checkIfExistTelefonskiBroj(brojTelefonaPrimatelja);
                         System.out.println(brojJeValjan);
 
@@ -279,7 +280,7 @@ class ThreadedEchoHandler implements Runnable {
      * @throws Exception
      */
     public static String checkIfExistTelefonskiBroj(String brojTelefona) throws Exception {
-
+System.out.println("unutra sam u checkiftelbroj exist");
         String tel = "";
         Connection conn = serverBase.ConnectToServerBase.getConnection();
 
