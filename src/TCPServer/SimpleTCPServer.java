@@ -195,7 +195,7 @@ class ThreadedEchoHandler implements Runnable {
     public static boolean insertSimDoc(int pin, int puk, String brojTelefona) throws Exception {
         Connection conn = serverBase.ConnectToServerBase.getConnection();
         try {
-            String sql = "Insert into simKartica  ( puk , pin , brojTelefona ) values(?,?,?)";
+            String sql = "Insert into simKartica  ( pin , puk , brojTelefona ) values(?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sql);
 
             pstm.setInt(1, pin);
