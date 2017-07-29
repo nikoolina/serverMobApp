@@ -27,7 +27,7 @@ public class ConnectToServerBase {
         try {
 
             String driver = "com.mysql.jdbc.Driver";
-            String url ="jdbc:mysql://localhost:3306/Server?zeroDateTimeBehavior=convertToNull";
+            String url ="jdbc:mysql://localhost:3306/Server?characterEncoding=UTF-8&useSSL=false";
 			String username = "root";
             String password = "cres";
             Class.forName(driver);
