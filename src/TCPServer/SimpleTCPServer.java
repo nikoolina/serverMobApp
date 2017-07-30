@@ -57,9 +57,9 @@ public class SimpleTCPServer {
 
 //                Connection conn =  serverBase.ConnectToServerBase.getConnection(); 
                 Socket incoming = s.accept();
-                String name = String.format("konekcija %d", i);
+                String name = String.format("connection %d", i);
 
-                System.out.printf("Otvorena %s\n", name);
+                System.out.printf("Open %s\n", name);
 
                 Runnable r = new ThreadedEchoHandler(incoming, name);
                 Thread t = new Thread(r);
@@ -68,7 +68,7 @@ public class SimpleTCPServer {
                 i++;
             }
         } catch (IOException e) {
-            System.err.println("Socket greska: " + e);
+            System.err.println("Socket error: " + e);
         }
 
     }
@@ -98,7 +98,7 @@ class ThreadedEchoHandler implements Runnable {
                 Scanner in = new Scanner(incoming.getInputStream());
                 PrintWriter out = new PrintWriter(incoming.getOutputStream(), true);
 
-                out.printf("Spojeni ste na %s, port %d, %s\n",
+                out.printf("Connected on %s, port %d, %s\n",
                         InetAddress.getLocalHost(),
                         incoming.getLocalPort(),
                         name);
@@ -126,22 +126,22 @@ class ThreadedEchoHandler implements Runnable {
                         if (brojTelefonaPosiljatelja.length() >= 3) {
                             insertSimDoc(pin, puk, brojTelefonaPosiljatelja);
                             int fb = findSerijskiBroj(brojTelefonaPosiljatelja);
-                            out.println("Uspjesno aktiviranje kartice");
+                            out.println("Card is Activated");
 
-                            out.printf("SerijskiBroj: %d\n", fb);
-                            System.out.println("uspjesna aktivacija. uneseno u bazu [ " + fb + " ]");
+                            out.printf("Serial Number: %d\n", fb);
+                            System.out.println("ACTIVATED. In base [ " + fb + " ]");
 
                         } else {
-                            out.println("neuspjesno aktiviranje kartice!");
-                            System.out.println("neuspjesno aktiviranje kartice!");
+                            out.println("Unsuccessful card activation!");
+                            System.out.println("Unsuccessful card activation!");
                         }
                         ////////---end : aktivacija kartice---///////
                     } else if (line.length() == 4) {
                         //////---logiranje kartice----/////
                         int pin = Integer.parseInt(line);
                         int fb = findSerijskiBrojPostojeceKartice(pin);
-                        out.println("Ulogirani ste :) ");
-                        out.printf("SerijskiBroj: %d\n", fb);
+                        out.println("Logged in :) ");
+                        out.printf("Serial number: %d\n", fb);
                         ////---end logiranje kartice ---/////
                         ///---poslan tel broj -> vraca 
                     } else if (line.length() >= 9) {
@@ -178,7 +178,7 @@ class ThreadedEchoHandler implements Runnable {
                 System.out.printf("%s closed.\n", name);
             }
         } catch (IOException e) {
-            System.err.printf("%s greska: %s ", name, e);
+            System.err.printf("%s error: %s ", name, e);
         }
 
     }

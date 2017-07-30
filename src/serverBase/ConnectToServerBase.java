@@ -36,7 +36,7 @@ public class ConnectToServerBase {
             System.out.println("Connected to DataBase Server!");
             return conn;
         } catch (Exception e) {
-            System.out.println("nisam usao u bazu");
+            System.out.println("did not get into the base.");
             System.out.println(e);
         }
 
